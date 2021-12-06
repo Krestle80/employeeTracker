@@ -11,12 +11,10 @@ CREATE TABLE depts (
 
 CREATE TABLE roles (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(30 NOT NULL),
-    salary DECIMAL(30, 2 NOT NULL)
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL(30) NOT NULL,
     dept_id INT
-    FOREIGN KEY (depts_id)
-    REFERENCES dept(id)
-    ON DELETE SET NULL
+
 );
 
 CREATE TABLE ee (
@@ -25,7 +23,4 @@ CREATE TABLE ee (
     lastName VARCHAR(30),
     manager_id INT,
     roles_id INT
-    FOREIGN KEY (roles_id)
-    REFERENCES roles(id)
-    ON DELETE SET NULL
 )

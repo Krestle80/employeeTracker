@@ -48,23 +48,23 @@ let addEeMenu = () =>{
     return inquierer.prompt([
         {
             type:'input',
-            name='eeFirst',
-            message="What is your new Employee's first name?"
+            name: 'eeFirst',
+            message:"What is your new Employee's first name?"
         },
         {
             type:'input',
-            name='eeLast',
-            message="What is your new Employee's last name?"
+            name:'eeLast',
+            message:"What is your new Employee's last name?"
         },
         {
             type:'input',
-            name='eeRole',
-            message="What is your new Employee's role?"
+            name:'eeRole',
+            message:"What is your new Employee's role?"
         },
         {
             type:'input',
-            name='eeman',
-            message="Who is your new Employee's manager?"
+            name:'eeman',
+            message:"Who is your new Employee's manager?"
         }
     ])
 }

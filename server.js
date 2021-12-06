@@ -1,18 +1,9 @@
-const express = require('express')
+const express = require('express');
+const ctable = require('console.table')
+const mysql = require('mysql2');
+const path = require('path');
+const { menu, addDeptMenu, addRoleMenu, addEeMenu } = require('./helpers/inquieries')
 
-const {
-    menu, 
-    addDeptMenu, 
-    addRoleMenu, 
-    addEeMenu
-  } = require('./helpers/inquieries');
-
-
-let PORT = 3001
-const app = express()
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 const db = mysql.createConnection(
     {
@@ -24,19 +15,47 @@ const db = mysql.createConnection(
     console.log(`Connected to the classlist_db database.`)
   );
 
-app.get('/api/depts', (req, res) =>{
-    let sql = 'SELECT '
-    db.query(sql, (err, depts) =>{
-        if (err) {
-            res.status(500).json({ error: err.message });
-             return;
-          }
-        res.json({
-            message: 'Departments Retrieved',
-            Departments: depts.dept_name})
+let startUp = () =>{
+    menu().then(ans => {
+        if(ans.menuPick == 'View all Departments'){
+            depts();
+        }
+        else if (ans.menuPick == 'View all Roles') roles()
+        else if (ans.menuPick == 'View all Employees') ee()
     })
-})
+}
 
-app.listen(PORT, (req,res) => {
-    console.log(`App now listening at localhost:${PORT}`) 
+let depts = () =>{
+
+    let sql = 'SELECT dept_name, id FROM depts'
+    db.query(sql, (err, depts) =>{
+        if (err) throw err
+          
+        console.table(depts)
+
 })
+}
+
+let roles = () =>{
+
+    let sql = 'SELECT title, id, salary, dept_id FROM roles'
+    db.query(sql, (err, depts) =>{
+        if (err) throw err
+          
+        console.table(depts)
+
+})
+}
+
+let ee = () =>{
+
+    let sql = 'SELECT firstName, lastName, id, manager_id, roles_id FROM ee'
+    db.query(sql, (err, depts) =>{
+        if (err) throw err
+          
+        console.table(depts)
+
+})
+}
+
+startUp();

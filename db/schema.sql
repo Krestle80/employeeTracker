@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS employees_db;
+rolesDROP DATABASE IF EXISTS employees_db;
 CREATE DATABASE employees_db;
 
 USE employees_db;
@@ -22,5 +22,5 @@ CREATE TABLE ee (
     firstName VARCHAR(30),
     lastName VARCHAR(30),
     manager_id INT,
-    roles_id INT
+    roles_id INT NOT NULL
 )

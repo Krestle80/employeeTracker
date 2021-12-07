@@ -1,7 +1,7 @@
 const inquierer = require('inquirer')
 
 // all questions  
-let menuOptions = ['View all Departments', 'View all Roles', 'View all Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role']
+let menuOptions = ['View all Departments', 'View all Roles', 'View all Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role', 'exit']
 let menu = () =>{
     return inquierer.prompt([
         {

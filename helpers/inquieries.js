@@ -1,9 +1,10 @@
-const inquierer = require('inquirer')
 
+const inquirer = require('inquirer')
+
+let menuOptions = ['View all Departments', 'View all Roles', 'View all Employees', 'Add a Department', 'Add a Role', 'Add an Employee', "Update an Employee's data", 'exit']
 // all questions  
-let menuOptions = ['View all Departments', 'View all Roles', 'View all Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role', 'exit']
 let menu = () =>{
-    return inquierer.prompt([
+    return inquirer.prompt([
         {
             type: 'list',
             name: 'menuPick',
@@ -12,9 +13,9 @@ let menu = () =>{
         },
     ])
 };
-
+//all prompts
 let addDeptMenu = () => {
-    return inquierer.prompt([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'deptName',
@@ -24,7 +25,7 @@ let addDeptMenu = () => {
 
 }
 let addRoleMenu = ()=> {
-    return inquierer.prompt([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'roleName',
@@ -45,7 +46,7 @@ let addRoleMenu = ()=> {
 
 }
 let addEeMenu = () =>{
-    return inquierer.prompt([
+    return inquirer.prompt([
         {
             type:'input',
             name: 'eeFirst',
@@ -69,5 +70,67 @@ let addEeMenu = () =>{
     ])
 }
 
+let SelectEeMenu = () =>{
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name:'eeFirst',
+            message:"Plese type in your employee's first name"
+        },
+        {
+            type: 'input',
+            name:'eeLast',
+            message:"Plese type in your employee's last name"
+        }
+    ])
+}
 
-module.exports = { menu, addDeptMenu, addRoleMenu, addEeMenu };
+let EeUpdateMenu = (employeefirst, employeeLast) =>{
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name:'eeUpdateMenu',
+            message:'What would you like to update about:' + employeefirst + ' ' + employeeLast,
+            choices: ['First Name', 'Last Name', 'Role', 'Manager', 'Return to Main Menu']
+        }
+    ])
+}
+
+let eeFirst = ()=>{
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name:'eeFirst',
+            message: "Please Type in the employee's first name."
+        }
+    ])
+}
+let eeLast = ()=>{
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name:'eeLast',
+            message: "Please Type in the employee's last name."
+        }
+    ])
+}
+let eeRole = ()=>{
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name:'eeRole',
+            message: "Please Type in the employee's new role."
+        }
+    ])
+}
+
+let eeMan = ()=>{
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name:'manId',
+            message: "Please Type in the employee's new Manager."
+        }
+    ])
+}
+module.exports = { menu, addDeptMenu, addRoleMenu, addEeMenu, SelectEeMenu, EeUpdateMenu, eeFirst, eeLast, eeRole, eeMan };
